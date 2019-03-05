@@ -28,18 +28,22 @@
                 <div class="col-md-3 mt-4">
                     <div class="card text-center">
                         <div class="card-body" id="card">
-
-                            @*<h5 class="card-title"><input type="checkbox" name="cbSelecionado" id="cbSelecionado" value="@luatdor.selecionado" /> @luatdor.nome</h5>*@
-                            <h5 class="card-title">@Html.CheckBoxFor(m => m[i].selecionado) @Html.DisplayNameFor(model => model[i].nome)</h5>
+                            <h5 class="card-title">@Html.CheckBoxFor(m => m[i].selecionado, new { style = "transform: scale(1.5);-webkit-transform: scale(1.5);" }) @Model[i].nome</h5>
+                            @Html.HiddenFor(model => model[i].nome)
                         </div>
                         <div class="card-footer text-muted">
                             <div class="row text-center" style="padding-left: 60px;">
                                 <ul class="list-unstyled mt-3 mb-4">
-                                    <li><b>Idade:</b>  @Html.LabelFor(m => m[i].idade)</li>
-                                    <li><b>Lutas:</b>  @Html.LabelFor(m => m[i].lutas)</li>
-                                    <li><b>Derrotas:</b> @Html.LabelFor(m => m[i].derrotas)</li>
-                                    <li><b>Vitórias:</b>  @Html.LabelFor(m => m[i].vitorias)</li>
-                                    @*<li><b>Artes Marciais:</b>  @Html.LabelFor(m => m[i].artesMarciais.Count().ToString())</li>*@
+                                    <li><b>Idade:</b>  @Model[i].idade</li>
+                                    <li><b>Lutas:</b>  @Model[i].lutas</li>
+                                    <li><b>Derrotas:</b> @Model[i].derrotas</li>
+                                    <li><b>Vitórias:</b>  @Model[i].vitorias</li>
+                                    <li><b>Artes Marciais:</b>  @Model[i].artesMarciais.Count()</li>
+                                    @Html.HiddenFor(model => model[i].idade)
+                                    @Html.HiddenFor(model => model[i].lutas)
+                                    @Html.HiddenFor(model => model[i].derrotas)
+                                    @Html.HiddenFor(model => model[i].vitorias)
+                                    @Html.HiddenFor(model => model[i].artesMarciais)
                                 </ul>
                             </div>
                         </div>

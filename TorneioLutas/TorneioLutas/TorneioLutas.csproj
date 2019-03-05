@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="Models\Lutador.cs" />
     <Compile Include="Models\Vencedores.cs" />
+    <Compile Include="Processamento\ProcessarLutas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

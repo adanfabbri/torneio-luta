@@ -37,12 +37,6 @@ namespace TorneioLutas.Controllers
         [HttpPost]
         public ActionResult Index(List<Lutador> listaLutadores, FormCollection collection)
         {
-            if (ModelState.IsValid)
-            {
-
-            }
-            Vencedores oVencedores = new Vencedores();
-
             var listaSelecionados = listaLutadores.Where(x => x.selecionado).ToList();
 
             if (listaSelecionados.Count < 20)
@@ -50,6 +44,48 @@ namespace TorneioLutas.Controllers
                 TempData["Msg"] = "Necessário selecionar 20 lutadores para iniciar o torneio";
                 return View(listaLutadores);
             }
+            else
+                TempData["Msg"] = "";
+
+            List<Lutador> G1 = new List<Lutador>();
+            List<Lutador> G2 = new List<Lutador>();
+            List<Lutador> G3 = new List<Lutador>();
+            List<Lutador> G4 = new List<Lutador>();
+            int aux = 1;
+            //Cria Grupos
+            foreach (var item in listaSelecionados.ToList().OrderBy(x => x.idade))
+            {
+                if (aux > 4)
+                    aux = 1;
+
+                switch (aux)
+                {
+                    case 1:
+                        G1.Add(item);
+                        break;
+                    case 2:
+                        G2.Add(item);
+                        break;
+                    case 3:
+                        G3.Add(item);
+                        break;
+                    case 4:
+                        G4.Add(item);
+                        break;
+                    default:
+                        break;
+                }
+
+                aux += 1;
+            }
+
+
+
+
+
+
+            Vencedores oVencedores = new Vencedores();
+
 
             return RedirectToAction("Resultado", "Torneio", oVencedores);
         }
