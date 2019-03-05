@@ -14,53 +14,42 @@
 
 <div class="bd-example">
     <div class="text-danger" style="margin-bottom:10px">@TempData["Msg"]</div>
-    <div class="row">
-        @foreach (var luatdor in Model)
-        {
-            <div class="col-md-3 mt-4">
-                <div class="card text-center">
-                    <div class="card-body" id="card">
+    @using (Html.BeginForm("Index", "Torneio", FormMethod.Post, new { id = "form1" }))
+    {
+        <div class="row">
+            <div class="text-center">
+                <button type="submit" id="btnIniciarTorneio" name="btnIniciarTorneio" class="btn btn-primary">Iniciar</button>
+            </div>
+        </div>
 
-                        <h5 class="card-title"><input type="checkbox" value="@luatdor.selecionado" /> @luatdor.nome</h5>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <div class="row text-center">
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li><b>Idade:</b> @luatdor.idade</li>
-                                <li><b>Lutas:</b> @luatdor.lutas</li>
-                                <li><b>Derrotas:</b> @luatdor.derrotas</li>
-                                <li><b>Vitórias:</b> @luatdor.vitorias</li>
-                                <li><b>Artes Marciais:</b> @luatdor.artesMarciais.Count()</li>
-                            </ul>
+        <div class="row">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <div class="col-md-3 mt-4">
+                    <div class="card text-center">
+                        <div class="card-body" id="card">
+
+                            @*<h5 class="card-title"><input type="checkbox" name="cbSelecionado" id="cbSelecionado" value="@luatdor.selecionado" /> @luatdor.nome</h5>*@
+                            <h5 class="card-title">@Html.CheckBoxFor(m => m[i].selecionado) @Html.DisplayNameFor(model => model[i].nome)</h5>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <div class="row text-center" style="padding-left: 60px;">
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li><b>Idade:</b>  @Html.LabelFor(m => m[i].idade)</li>
+                                    <li><b>Lutas:</b>  @Html.LabelFor(m => m[i].lutas)</li>
+                                    <li><b>Derrotas:</b> @Html.LabelFor(m => m[i].derrotas)</li>
+                                    <li><b>Vitórias:</b>  @Html.LabelFor(m => m[i].vitorias)</li>
+                                    @*<li><b>Artes Marciais:</b>  @Html.LabelFor(m => m[i].artesMarciais.Count().ToString())</li>*@
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+         
+        </div>
+    }
 
-            @*<div class="card" style="width: 15rem;">
-
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>*@
-
-            @*<div class="card mb-3 shadow-sm">
-                      <div class="card-header">
-                          <input type="checkbox" value="@luatdor.selecionado" />
-                          <h4 class="my-0 font-weight-normal">@luatdor.nome</h4>
-                      </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled mt-2 mb-3">
-                            <li><b>Idade:</b> @luatdor.idade</li>
-                            <li><b>Lutas:</b> @luatdor.lutas</li>
-                            <li><b>Derrotas:</b> @luatdor.derrotas</li>
-                            <li><b>Vitórias:</b> @luatdor.vitorias</li>
-                            <li><b>Artes Marciais:</b> @luatdor.artesMarciais.Count()</li>
-                        </ul>
-                    </div>
-                </div>*@
-        }
-    </div>
 
 </div>
 

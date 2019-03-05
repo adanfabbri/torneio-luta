@@ -18,6 +18,7 @@ namespace TorneioLutas.Controllers
         #region Actions
 
         // GET: Torneio
+        [HttpGet]
         public ActionResult Index()
         {
             try
@@ -31,8 +32,26 @@ namespace TorneioLutas.Controllers
                 TempData["Msg"] = "Erro ao buscar competidores. Erro: " + ex.Message;
                 return View();
             }
+        }
 
-            
+        [HttpPost]
+        public ActionResult Index(List<Lutador> listaLutadores, FormCollection collection)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            Vencedores oVencedores = new Vencedores();
+
+            var listaSelecionados = listaLutadores.Where(x => x.selecionado).ToList();
+
+            if (listaSelecionados.Count < 20)
+            {
+                TempData["Msg"] = "Necessário selecionar 20 lutadores para iniciar o torneio";
+                return View(listaLutadores);
+            }
+
+            return RedirectToAction("Resultado", "Torneio", oVencedores);
         }
 
         #endregion
