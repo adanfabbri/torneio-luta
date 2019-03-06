@@ -19,7 +19,7 @@ namespace TorneioLutas.Controllers
         #region Actions
 
         // GET: Torneio
-        [HttpGet]
+        [HttpGet] 
         public ActionResult Index()
         {
             try
