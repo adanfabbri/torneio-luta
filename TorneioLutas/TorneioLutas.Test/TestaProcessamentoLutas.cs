@@ -15,7 +15,7 @@ namespace TorneioLutas.Test
             Lutador oLutador1 = new Lutador();
             oLutador1.nome = "Teste 1";
             oLutador1.artesMarciais = new List<string>();
-            oLutador1.artesMarciais.Add("Karate");
+            oLutador1.artesMarciais.Add("Karate"); 
             oLutador1.derrotas = 10;
             oLutador1.idade = 30;
             oLutador1.lutas = 40;
