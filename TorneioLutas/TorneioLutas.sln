@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TorneioLutas", "TorneioLutas\TorneioLutas.csproj", "{E6E29464-8BC2-4A5D-A845-2EAA6A3A22A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TorneioLutas.Test", "TorneioLutas.Test\TorneioLutas.Test.csproj", "{D359132E-A5EA-4F30-B290-5D9A5906ED3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E6E29464-8BC2-4A5D-A845-2EAA6A3A22A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6E29464-8BC2-4A5D-A845-2EAA6A3A22A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6E29464-8BC2-4A5D-A845-2EAA6A3A22A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D359132E-A5EA-4F30-B290-5D9A5906ED3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D359132E-A5EA-4F30-B290-5D9A5906ED3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D359132E-A5EA-4F30-B290-5D9A5906ED3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D359132E-A5EA-4F30-B290-5D9A5906ED3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,5 +20,6 @@ namespace TorneioLutas.Models
         public int derrotas { get; set; }
         public int vitorias { get; set; }
         public bool selecionado { get; set; }
+        public int pontos { get; set; }
     }
 }

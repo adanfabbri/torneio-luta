@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using TorneioLutas.Models;
+using TorneioLutas.Processamento;
 
 namespace TorneioLutas.Controllers
 {
@@ -37,57 +38,48 @@ namespace TorneioLutas.Controllers
         [HttpPost]
         public ActionResult Index(List<Lutador> listaLutadores, FormCollection collection)
         {
-            var listaSelecionados = listaLutadores.Where(x => x.selecionado).ToList();
-
-            if (listaSelecionados.Count < 20)
+            try
             {
-                TempData["Msg"] = "Necessário selecionar 20 lutadores para iniciar o torneio";
-                return View(listaLutadores);
-            }
-            else
-                TempData["Msg"] = "";
+                var listaSelecionados = listaLutadores.Where(x => x.selecionado).ToList();
 
-            List<Lutador> G1 = new List<Lutador>();
-            List<Lutador> G2 = new List<Lutador>();
-            List<Lutador> G3 = new List<Lutador>();
-            List<Lutador> G4 = new List<Lutador>();
-            int aux = 1;
-            //Cria Grupos
-            foreach (var item in listaSelecionados.ToList().OrderBy(x => x.idade))
-            {
-                if (aux > 4)
-                    aux = 1;
-
-                switch (aux)
+                if (listaSelecionados.Count != 20)
                 {
-                    case 1:
-                        G1.Add(item);
-                        break;
-                    case 2:
-                        G2.Add(item);
-                        break;
-                    case 3:
-                        G3.Add(item);
-                        break;
-                    case 4:
-                        G4.Add(item);
-                        break;
-                    default:
-                        break;
+                    TempData["Msg"] = "Necessário selecionar 20 lutadores para iniciar o torneio";
+                    return View(listaLutadores);
                 }
+                else
+                    TempData["Msg"] = "";
 
-                aux += 1;
+                ProcessarLutas oProcessarLutas = new ProcessarLutas();
+                var oVencedores = oProcessarLutas.IniciarTorneio(listaSelecionados);
+
+                return RedirectToAction("Resultado", "Torneio", new { campeao = oVencedores.primeiro.nome, segundo = oVencedores.segundo.nome, terceiro = oVencedores.terceiro.nome });
+                
             }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = "Erro durante o procesamento. Erro: " + ex.Message;
+                return View();
+            }
+          
+        }
 
-
-
-
-
-
-            Vencedores oVencedores = new Vencedores();
-
-
-            return RedirectToAction("Resultado", "Torneio", oVencedores);
+        [HttpGet]
+        public ActionResult Resultado(string campeao, string segundo, string terceiro)
+        {
+            try
+            {
+                Resultado oResultado = new Resultado();
+                oResultado.campeao = campeao;
+                oResultado.segundo = segundo;
+                oResultado.terceiro = terceiro;
+                return View(oResultado);
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = "Erro: " + ex.Message;
+                return View();
+            }
         }
 
         #endregion

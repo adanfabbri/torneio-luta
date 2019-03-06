@@ -1,0 +1,80 @@
+﻿@model TorneioLutas.Models.Resultado
+
+@{
+    ViewBag.Title = "Resultado";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Resultado</h2>
+
+    </div>
+</div>
+
+<div class="bd-example">
+    <div class="text-danger" style="margin-bottom:10px">@TempData["Msg"]</div>
+
+    <div class="row">
+        <div class="text-center">
+            <a href="@Url.Action("Index","Torneio")" style="color: blue;"> Voltar</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-5" onclick="checkCard(this)">
+            <div class="card text-center">
+                <div class="card-body" id="card">
+                    <h5 class="card-title">Campeão</h5>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row text-center" style="padding-left: 111px;">
+                        <ul class="list-unstyled mt-4 mb-5">
+                            <li><b> @Model.campeao</b> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-5" onclick="checkCard(this)">
+            <div class="card text-center">
+                <div class="card-body" id="card">
+                    <h5 class="card-title">Segundo</h5>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row text-center" style="padding-left: 111px;">
+                        <ul class="list-unstyled mt-4 mb-5">
+                            <li><b> @Model.segundo</b> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-5" onclick="checkCard(this)">
+            <div class="card text-center">
+                <div class="card-body" id="card">
+                    <h5 class="card-title">Terceiro</h5>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row text-center" style="padding-left: 111px;">
+                        <ul class="list-unstyled mt-4 mb-5 text-center">
+                            <li><b>@Model.terceiro </b> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+
+
+</div>
